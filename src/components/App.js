@@ -22,6 +22,7 @@ class App extends Component {
       account: null,
       immunizationName: '',
       immunizationDate:'',
+      immunizationValidity:'',
       patientRecordNo:0,
       recordNumber:0,
       patientRecord:[],
@@ -65,7 +66,8 @@ class App extends Component {
     const networkData = Immunization.networks[networkId]
     console.log('networkData=' , networkData)
     if(networkData) {
-      const contract = web3.eth.Contract(Immunization.abi, networkData.address)
+
+      const contract = new web3.eth.Contract(Immunization.abi, networkData.address)
       this.setState({ contract })
       console.log('contract=' , contract)
       this.setState({ display : true })
@@ -119,6 +121,27 @@ class App extends Component {
               response.text().then((pRecord) => {
                 console.log("Patient Record from IPFS =",pRecord)
                 const pRecord_parts = pRecord.split(',');
+
+
+                var today = new Date();
+                var vaxType = pRecord_parts[3]
+                var vaxDate = new Date(pRecord_parts[pRecord_parts.length-1])
+                var valDate = new Date();
+
+                if (vaxType == 'PCR') {
+                  valDate.setDate(vaxDate.getDate() + 3)
+                }else{
+                  valDate.setFullYear(vaxDate.getFullYear() + 1)
+                }
+
+                if (today <= valDate){
+                  pRecord_parts.push("valid until "+valDate.toLocaleDateString());
+                  console.log('Immunization is valid until '+valDate)
+                }else{
+                  pRecord_parts.push('Expired on '+ valDate.toLocaleDateString());
+                  console.log('Immunization Expired on '+ valDate)
+                }
+
                 this.setState({ patientRecord : pRecord_parts })
               }); //response   
             });//fetch
@@ -238,7 +261,7 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow">
-          <h1>Blockchain based Immunization records</h1>    
+          <h1> Travel safely with TravelFree.</h1>
         </nav>
         <p>&nbsp;</p>
         <div className="container-fluid mt-5">
@@ -255,26 +278,23 @@ class App extends Component {
                     </label>
                     <p> </p>
                     <label>
-                      Doctor Name:
+                      Medical Center:
                       <input name = "doctorName" type="text" value={this.state.doctorName} onChange={this.handleChange} />
                     </label>
                     <p> </p>
-                    <p>Immunization Name</p>
+                    <p>Immunization Type</p>
                     <select 
                       name = "immunizationName"
                       value={this.state.immunization} 
                       onChange={this.handleChange} 
                     >
                       <option value=''></option>
-                      <option value="DTAP">DTAP</option>
-                      <option value="Hepatitis A">Hepatitis A</option>
-                      <option value="Hepatitis B">Hepatitis B</option>
-                      <option value="HIB">HIB</option>
-                      <option value="MMR">MMR</option>
-                      <option value="PCV13">PCV13</option>
-                      <option value="Polio">Polio</option>
-                      <option value="Rotavirus">Rotavirus</option>
-                      <option value="Varicella">Varicella</option>
+                      <option value="Astra-Zeneca">Astra-Zeneca</option>
+                      <option value="Johnson&Johnson">Johnson&Johnson</option>
+                      <option value="Moderna">Moderna</option>
+                      <option value="Pfizer">Pfizer</option>
+                      <option value="PCR">PCR</option>
+                      <option value="Recovery from past exposure">Recovery</option>
                     </select>
                     <p> </p>
                     <label>
@@ -283,7 +303,7 @@ class App extends Component {
                     </label>
                     <p> </p>
                   <input type="submit" value="Submit" />
-                  <p>&nbsp;</p>
+                   <p>&nbsp;</p>
                 </form> 
                 </div>
                   :
@@ -300,10 +320,10 @@ class App extends Component {
                     <h3> Patient Record </h3>
                     <p> Patient Record Number: {this.state.patientRecord[0]}  </p>
                     <p> Patient name : {this.state.patientRecord[1]}</p>
-                    <p> Doctor name : Immunization name : Immunization date </p>   
-                    <p> {this.state.patientRecord[2]} : {this.state.patientRecord[3]} : {this.state.patientRecord[4]}</p>
-                    <p> {this.state.patientRecord[5]} : {this.state.patientRecord[6]} : {this.state.patientRecord[7]}</p>
-                    <p> {this.state.patientRecord[8]} : {this.state.patientRecord[9]} : {this.state.patientRecord[10]}</p>
+                    <p> Medical Center : Immunization Type : Immunization Date : Immunization Validity </p>
+                    <p> {this.state.patientRecord[2]} : {this.state.patientRecord[3]} : {this.state.patientRecord[4]} : {this.state.patientRecord[5]}</p>
+                    <p> {this.state.patientRecord[6]} : {this.state.patientRecord[7]} : {this.state.patientRecord[8]} : {this.state.patientRecord[9]}</p>
+                    <p> {this.state.patientRecord[10]} : {this.state.patientRecord[11]} : {this.state.patientRecord[12]} : {this.state.patientRecord[13]}</p>
                     <button onClick={() => this.handleClick()}>
                         Home
                     </button> 
