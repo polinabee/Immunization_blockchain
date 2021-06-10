@@ -271,22 +271,21 @@ class App extends Component {
               <div className="content mr-auto ml-auto">
                 <h2>Immunization Form</h2>
                 <p> </p>
-                 <form onSubmit={this.handleSubmit}>
-                    <label>
-                      Patient Name:
-                      <input name = "patientName" type="text" value={this.state.patientName} onChange={this.handleChange} />
-                    </label>
-                    <p> </p>
-                    <label>
-                      Medical Center:
-                      <input name = "doctorName" type="text" value={this.state.doctorName} onChange={this.handleChange} />
-                    </label>
-                    <p> </p>
-                    <p>Immunization Type</p>
-                    <select 
-                      name = "immunizationName"
-                      value={this.state.immunization} 
-                      onChange={this.handleChange} 
+                <table class="center">
+                  <tr>
+                    <td>Patient Name</td>
+                    <th><input name = "patientName" type="text" value={this.state.patientName} onChange={this.handleChange} /></th>
+                  </tr>
+                  <tr>
+                    <td>Medical Center</td>
+                    <td><input name = "doctorName" type="text" value={this.state.doctorName} onChange={this.handleChange} /></td>
+                  </tr>
+                  <tr>
+                    <td>Immunization Type</td>
+                    <td><select
+                        name = "immunizationName"
+                        value={this.state.immunization}
+                        onChange={this.handleChange}
                     >
                       <option value=''></option>
                       <option value="Astra-Zeneca">Astra-Zeneca</option>
@@ -295,13 +294,17 @@ class App extends Component {
                       <option value="Pfizer">Pfizer</option>
                       <option value="PCR">PCR</option>
                       <option value="Recovery from past exposure">Recovery</option>
-                    </select>
-                    <p> </p>
-                    <label>
-                      Immunization Date:
-                      <input name = "immunizationDate" type="date" value={this.state.immunizationDate} onChange={this.handleChange} />
-                    </label>
-                    <p> </p>
+                    </select></td>
+                  </tr>
+                  <tr>
+                    <td>Immunization Date</td>
+                    <td><input name = "immunizationDate" type="date" value={this.state.immunizationDate} onChange={this.handleChange} /></td>
+                    <td>{this.state.patientRecord[12]}</td>
+                    <td>{this.state.patientRecord[13]}</td>
+                  </tr>
+                </table>
+
+                 <form onSubmit={this.handleSubmit} >
                   <input type="submit" value="Submit" />
                    <p>&nbsp;</p>
                 </form> 
@@ -317,13 +320,33 @@ class App extends Component {
                   <input type="submit" value="Get Patient Record" />
                   <p>&nbsp;</p>
                   <div>
-                    <h3> Patient Record </h3>
-                    <p> Patient Record Number: {this.state.patientRecord[0]}  </p>
-                    <p> Patient name : {this.state.patientRecord[1]}</p>
-                    <p> Medical Center : Immunization Type : Immunization Date : Immunization Validity </p>
-                    <p> {this.state.patientRecord[2]} : {this.state.patientRecord[3]} : {this.state.patientRecord[4]} : {this.state.patientRecord[5]}</p>
-                    <p> {this.state.patientRecord[6]} : {this.state.patientRecord[7]} : {this.state.patientRecord[8]} : {this.state.patientRecord[9]}</p>
-                    <p> {this.state.patientRecord[10]} : {this.state.patientRecord[11]} : {this.state.patientRecord[12]} : {this.state.patientRecord[13]}</p>
+                    <table>
+                      <caption>Patient Record for {this.state.patientRecord[1]}, Patient #{this.state.patientRecord[0]}</caption>
+                      <tr>
+                        <th>Medical Center</th>
+                        <th>Immunization Type</th>
+                        <th>Immunization Date</th>
+                        <th>Immunization Validity</th>
+                      </tr>
+                      <tr>
+                        <td>{this.state.patientRecord[2]}</td>
+                        <td>{this.state.patientRecord[3]}</td>
+                        <td>{this.state.patientRecord[4]}</td>
+                        <td>{this.state.patientRecord[5]}</td>
+                      </tr>
+                      <tr>
+                        <td>{this.state.patientRecord[6]}</td>
+                        <td>{this.state.patientRecord[7]}</td>
+                        <td>{this.state.patientRecord[8]}</td>
+                        <td>{this.state.patientRecord[9]}</td>
+                      </tr>
+                      <tr>
+                        <td>{this.state.patientRecord[10]}</td>
+                        <td>{this.state.patientRecord[11]}</td>
+                        <td>{this.state.patientRecord[12]}</td>
+                        <td>{this.state.patientRecord[13]}</td>
+                      </tr>
+                    </table>
                     <button onClick={() => this.handleClick()}>
                         Home
                     </button> 

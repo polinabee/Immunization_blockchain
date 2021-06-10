@@ -1,1 +1,80 @@
 /* Styles go here */
+
+/* spacing */
+
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 3px solid #D17AB3;
+}
+
+body {text-align:center;}
+
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+thead th:nth-child(1) {
+    width: 30%;
+}
+
+thead th:nth-child(2) {
+    width: 20%;
+}
+
+thead th:nth-child(3) {
+    width: 15%;
+}
+
+thead th:nth-child(4) {
+    width: 35%;
+}
+
+th, td {
+    padding: 20px;
+}
+
+
+button {
+    display: inline-block;
+    background-color: #D17AB3;
+    border-radius: 10px;
+    border: 4px double #BBB5DA;
+    color: floralwhite;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+
+
+button:hover {
+    background-color: #F0B1BB;
+}
+
+.button{
+    display: inline-block;
+    background-color: #D17AB3;
+    border-radius: 10px;
+    border: 4px double #BBB5DA;
+    color: floralwhite;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
