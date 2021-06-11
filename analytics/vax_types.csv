@@ -1,0 +1,6 @@
+,id,name,type,immune_days
+0,pcr,PCR Test,test,3
+1,rec,Proof Of Recovery,rec,180
+2,jj,Johnson & Johnson,vax,365
+3,az1,Astra-Zeneca Dose 1,vax1,0
+4,az2,Astra-Zeneca Dose 2,vax2,365
