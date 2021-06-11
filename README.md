@@ -1,5 +1,5 @@
 
-## Setup
+## DAPP
 
 After installing Ganache, NPM, and MetaMask:
 Install ipfs-mini: 
@@ -23,5 +23,14 @@ You can use this number or a past number during the same session to look up your
 Press Home to enter a new immunization record without closing the session.
 
 If you restart the app, the old records will be wiped.
+
+
+
+## Analytics
+
+We generated sample data based on business logic for this application and created some basic visuals off it.
+The code for data generation is in analytics/data_mockup.ipynb
+The charts are exported to the analytics directory.
+
 
 
