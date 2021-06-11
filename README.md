@@ -32,5 +32,8 @@ We generated sample data based on business logic for this application and create
 The code for data generation is in analytics/data_mockup.ipynb
 The charts are exported to the analytics directory.
 
+A couple charts are in the same jupyter notebook as the data generation code.
+The rest are in the analytics/excel_graphs directory.
+
 
 
