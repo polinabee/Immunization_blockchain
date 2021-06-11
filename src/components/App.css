@@ -1,6 +1,9 @@
-/* Styles go here */
-
-/* spacing */
+/* navbar */
+.navbar {
+    color: white;
+    background: rgb(209,122,179);
+    background: linear-gradient(90deg, rgba(209,122,179,1) 0%, rgba(239,177,186,1) 35%, rgba(233,177,239,1) 100%);
+}
 
 table {
     table-layout: fixed;
@@ -78,3 +81,4 @@ button:hover {
     cursor: pointer;
     margin: 5px;
 }
+
